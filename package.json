@@ -1,0 +1,6 @@
+{
+  "name": "webrtc",
+  "version": "1.0.0",
+  "description": "using webRTC and Websockets",
+  "license": "MIT"
+}
