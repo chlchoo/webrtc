@@ -11,6 +11,7 @@ const camerasSelect = document.getElementById("cameras");
 const call = document.getElementById("call");
 const messageForm = document.getElementById("msg");
 const chatArea = document.getElementById("chatWrapper");
+const captureButton = document.getElementById("capture");
 
 let myStream;
 let muted = false;
@@ -237,9 +238,77 @@ function handleAddStream(data) {
   peerFace.srcObject = data.stream;
 }
 
+
+//좌우반전 
+$("#check01").click(function() {
+  if(myFace.style.transform == "")  {
+    myFace.style.transform = "scaleX(-1)";
+  } else {
+    myFace.style.transform = "";
+  }
+
+});
+
+/**
+	 * 이미지 캡처 기능
+	 */
+ this.imageCaptureSave = () => {
+  captureScreen();
+}
+/**
+ * 스크린 캡처 기능
+ */
+function captureScreen() {
+  navigator.mediaDevices.getDisplayMedia({
+    video: true
+  }).then(stream => {
+    const track = stream.getVideoTracks()[0];
+    const capture = new ImageCapture(track);
+    setTimeout(()=> {captureScreenDelay(capture, track)} , 500);
+
+    });
+
+}
+
+function captureScreenDelay (capture, track) {
+
+
+  capture.grabFrame().then(bitmap => {
+
+    track.stop();
+
+    const canvas = document.createElement('canvas');
+    canvas.width = bitmap.width;
+    canvas.height = bitmap.height;
+    canvas.getContext('2d').drawImage(bitmap, 1, 1, bitmap.width - 4, bitmap.height - 3, 0, 0, bitmap.width - 4, bitmap.height - 3);
+
+    const filename = '캡처.png';
+
+    saveAs(canvas.toDataURL(), filename);
+  });
+}
+
+/**
+ * 스크린 캡처 후 파일 업로드 기능
+ */
+function saveAs(uri, filename) {
+  const link = document.createElement('a');
+  if (typeof link.download === 'string') {
+    link.href = uri;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } else {
+    window.open(uri);
+  }
+}
+
+
 micButton.addEventListener("click", handleMuteClick);
 videoButton.addEventListener("click", handleCameraClick);
 chatButton.addEventListener("click", handleChatClick);
+captureButton.addEventListener("click", captureScreen);
 camerasSelect.addEventListener("input", handleCameraChange);
 welcomeForm.addEventListener("submit", handleWelcomeSubmit);
 messageForm.addEventListener("submit", handleMessageSubmit);
