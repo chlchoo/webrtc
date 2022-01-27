@@ -1,0 +1,134 @@
+body {
+    background-color: lightblue;
+    color: #333;
+    overflow: hidden;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0 auto;
+  }
+  input {
+    width: -webkit-fill-available;
+    margin: 0 10px 0 0;
+    border-color: lightgrey;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 100px;
+    overflow: hidden;
+  }
+  li {
+    margin: 0 15px;
+    clear: both;
+    float: left;
+  }
+  li.you {
+    float: right;
+    clear: both;
+  }
+  button {
+    width: fit-content;
+    height: 32px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  #myStream button {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+  }
+  
+  #buttonWrapper {
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    grid-gap: 20px;
+    padding: 10px;
+    margin: auto;
+    left: 10px;
+    z-index: 2;
+  }
+  
+  #myFace,
+  #peerFace,
+  #call {
+    width: 100%;
+    height: auto;
+  }
+  
+  #myFace.small {
+    position: absolute;
+    height: auto;
+    width: 200px;
+    top: 20px;
+    left: 20px;
+    border: 1px solid cornflowerblue;
+  }
+  
+  select {
+    height: 50px;
+    margin: 0;
+    border: none;
+    color: #333;
+  }
+  
+  #welcome form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #chatWrapper {
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    color: #333;
+    overflow-y: scroll;
+    z-index: 3;
+    position: fixed;
+    right: 0;
+    top: 0;
+    box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%);
+  }
+  
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+  }
+  
+  #call {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #msg {
+    width: fit-content;
+    height: 32px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 10px;
+    margin: 0;
+    border: none;
+    padding: 10px;
+  }
+  
+  #myStream {
+    width: 100%;
+  }
+  
